@@ -1,0 +1,6 @@
+[submodule "googletest"]
+	path = thirdparty/googletest
+	url = git@github.com:google/googletest.git
+[submodule "thirdparty/hippomocks"]
+	path = thirdparty/hippomocks
+	url = https://github.com/dascandy/hippomocks.git
