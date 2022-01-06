@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Pull in third party modules
-      run: git submodule init && git submodule update
+      run: git submodule update --init --recursive
     - name: Create build directory
       run: mkdir build
     - name: Configure
