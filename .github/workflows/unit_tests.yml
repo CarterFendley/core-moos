@@ -14,15 +14,15 @@ jobs:
         os: [ubuntu-20.04, ubuntu-18.04]
     runs-on: ${{ matrix.os }}
   
-  steps:
-  - uses: actions/checkout@v2
-  - name: Pull in third party modules
-    run: git submodule init
-  - name: Create build directory
-    run: mkdir build
-  - name: Configure
-    run: cd build && cmake ..
-  - name: Build
-    run: cd build && make -j$(nproc)
-  - name: Unit tests
-    run: ctest --verbose
+    steps:
+    - uses: actions/checkout@v2
+    - name: Pull in third party modules
+      run: git submodule init
+    - name: Create build directory
+      run: mkdir build
+    - name: Configure
+      run: cd build && cmake ..
+    - name: Build
+      run: cd build && make -j$(nproc)
+    - name: Unit tests
+      run: ctest --verbose
