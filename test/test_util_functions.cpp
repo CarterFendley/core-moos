@@ -1,17 +1,16 @@
 #include "MOOS/libMOOS/Utils/MOOSUtilityFunctions.h"
 #include "gtest/gtest.h"
 #include "hippomocks.h"
-#include <sys/timeb.h>
 
-int mock_ftime(timeb* buf){
-  buf->time = 1641429964;
-  return 0;
+time_t mock_time(time_t* rawtime){
+  *rawtime = 1641429964;
+  return 1641429964;
 }
 
 TEST(TestUtilFuncs, GetDate){
   // Redirect ftime() calls to our mock
   MockRepository mocks;
-  mocks.OnCallFunc(ftime).Do(mock_ftime);
+  mocks.OnCallFunc(time).Do(mock_time);
 
   // Do assertions based on time fixed by mock
   EXPECT_EQ(MOOSGetDate(), "Wed Dec 31 19:00:00 1969\n");
