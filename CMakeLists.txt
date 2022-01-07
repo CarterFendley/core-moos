@@ -258,3 +258,8 @@ endif()
 
 include(UninstallTarget)
 configure_uninstall_target(${CMAKE_CURRENT_BINARY_DIR}/Uninstall.cmake)
+
+add_subdirectory(thirdparty/googletest)
+add_subdirectory(thirdparty/hippomocks/HippoMocks)
+enable_testing()
+add_subdirectory(test)
