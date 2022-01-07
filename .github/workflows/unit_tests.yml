@@ -8,10 +8,10 @@ on:
   workflow_dispatch:
 
 jobs:
-  linux-build:
+  unit-test:
     strategy:
       matrix:
-        os: [ubuntu-20.04, ubuntu-18.04]
+        os: [ubuntu-20.04, ubuntu-18.04, macos-11, macos-10.15]
     runs-on: ${{ matrix.os }}
   
     steps:
@@ -21,7 +21,7 @@ jobs:
     - name: Create build directory
       run: mkdir build
     - name: Configure
-      run: cd build && cmake ..
+      run: cd build && cmake .. -DBUILD_TESTING=true
     - name: Build
       run: cd build && make -j$(nproc)
     - name: Unit tests
