@@ -63,6 +63,7 @@
 #include "winbase.h"
 #include "winnt.h"
 #include <conio.h>
+#include <sys/timeb.h>
 #define snprintf _snprintf
 #define vsnprintf _vsnprintf
 #endif
@@ -76,7 +77,6 @@
 
 #include <sys/types.h>
 #include <sys/stat.h>
-#include <sys/timeb.h>
 #include <stdio.h>
 #include <iostream>
 #include <stdexcept>
@@ -923,13 +923,13 @@ bool MOOSStrCmp(string s1,string s2)
 string MOOSGetDate(double t)
 {
 #ifndef _WIN32
-    struct timeb timebuffer;
-    ftime( &timebuffer );
+    time_t rawtime;
+    time( &rawtime );
 
     if(t<0)
-        timebuffer.time = 0;
+        rawtime = 0;
 
-    char *timeline = ctime( & ( timebuffer.time ) );
+    char *timeline = ctime( & ( rawtime ) );
     char sResult[100];
     sprintf(sResult,"%s",timeline);
 
