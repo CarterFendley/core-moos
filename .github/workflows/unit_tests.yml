@@ -21,7 +21,7 @@ jobs:
     - name: Create build directory
       run: mkdir build
     - name: Configure
-      run: cd build && cmake ..
+      run: cd build && cmake .. -DBUILD_TESTING=true
     - name: Build
       run: cd build && make -j$(nproc)
     - name: Unit tests
